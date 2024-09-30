@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .hidden-content {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+        }
+
+        .unlock-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .unlock-button:hover {
+            background-color: #005c99;
+        }
+
+        .tasks {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .task {
+            margin: 10px 0;
+        }
+
+        .completed-task {
+            color: green;
+        }
+
+        .tasks .task.complete {
+            color: green;
+        }
+
+        .tasks .task.incomplete {
+            color: red;
+        }
+
+        #timer {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Unlock Exclusive Content</h2>
+        <p>Follow the steps below to unlock the content.</p>
+
+        <div class="tasks">
+            <p class="task incomplete" id="task1">Step 1: Open Telegram Bot</p>
+            <a class="unlock-button" href="https://t.me/ratsgame_bot/app?startapp=y2LYbG1l&startApp=y2LYbG1l" target="_blank" id="visit-telegram">Open Telegram Bot</a>
+
+            <p class="task incomplete" id="task2">Step 2: Join the Telegram Channel</p>
+            <a class="unlock-button" href="https://t.me/AirdropAndBotNews" target="_blank" id="join-telegram-channel">Join Telegram Channel</a>
+
+            <p id="timer">Waiting for 1 minute...</p>
+        </div>
+
+        <div class="hidden-content" id="hiddenContent">
+            <h3>You didnt Completed Your Task, Please retry.</h3>
+            <p>This is your exclusive content!</p>
+        </div>
+    </div>
+
+    <script>
+        const visitTelegramButton = document.getElementById('visit-telegram');
+        const joinTelegramButton = document.getElementById('join-telegram-channel');
+        const task1 = document.getElementById('task1');
+        const task2 = document.getElementById('task2');
+        const hiddenContent = document.getElementById('hiddenContent');
+        const timerDisplay = document.getElementById('timer');
+
+        let task1Completed = false;
+        let task2Completed = false;
+
+        // Function to handle Task 1 completion (open Telegram bot)
+        visitTelegramButton.addEventListener('click', function() {
+            task1.innerText = 'Step 1: Opened Telegram Bot (Completed)';
+            task1.classList.replace('incomplete', 'complete');
+            task1Completed = true;
+
+            // Enable the next step
+            joinTelegramButton.style.display = 'inline-block';
+        });
+
+        // Function to handle Task 2 completion (join Telegram channel)
+        joinTelegramButton.addEventListener('click', function() {
+            task2.innerText = 'Step 2: Joined Telegram Channel (Completed)';
+            task2.classList.replace('incomplete', 'complete');
+            task2Completed = true;
+
+            // Start 1-minute timer when both tasks are done
+            if (task1Completed && task2Completed) {
+                startTimer();
+            }
+        });
+
+        // Function to start the 1-minute hidden timer
+        function startTimer() {
+            timerDisplay.style.display = 'block';
+            let seconds = 60;
+
+            const countdown = setInterval(function() {
+                timerDisplay.innerText = `Waiting for ${seconds--} seconds...`;
+
+                if (seconds < 0) {
+                    clearInterval(countdown);
+                    timerDisplay.innerText = '';
+                    timerDisplay.style.display = 'none';
+
+                    // Show the hidden content
+                    hiddenContent.style.display = 'block';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
