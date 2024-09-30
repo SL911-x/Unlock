@@ -90,7 +90,7 @@
             <p class="task incomplete" id="task2">Step 2: Join the Telegram Channel</p>
             <a class="unlock-button" href="https://t.me/AirdropAndBotNews" target="_blank" id="join-telegram-channel">Join Telegram Channel</a>
 
-            <p id="timer">Waiting for 1 minute...</p>
+            <p id="timer">verifying...</p>
         </div>
 
         <div class="hidden-content" id="hiddenContent">
@@ -135,10 +135,10 @@
         // Function to start the 1-minute hidden timer
         function startTimer() {
             timerDisplay.style.display = 'block';
-            let seconds = 60;
+            let seconds = 5;
 
             const countdown = setInterval(function() {
-                timerDisplay.innerText = `Waiting for ${seconds--} seconds...`;
+                timerDisplay.innerText = `verifying, Pleaase wait ${seconds--} seconds...`;
 
                 if (seconds < 0) {
                     clearInterval(countdown);
